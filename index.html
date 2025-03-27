@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIT TRANSPORT</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,#005186, #12012d);
+            text-align: center;
+        }
+
+        /* Navbar */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            height: 80px;
+        }
+
+        .wed {
+            font-size: 40px;
+            font-weight: bold;
+            color: #333;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        /* Steps Section */
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            padding: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .step:hover {
+            transform: scale(1.1);
+        }
+
+        .circle {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #178f98, #05459f);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .step-name {
+            margin-top: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        /* Weekly Calendar Bar */
+        .calendar-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .day {
+            flex: 1;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            transition: 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .day a {
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        /* Colors for each day */
+        .monday { background: #59b4ff; }
+        .tuesday { background: #27557a; }
+        .wednesday { background: #59b4ff; }
+        .thursday { background: #27557a; }
+        .friday { background: #59b4ff; }
+        .saturday { background: #27557a; }
+        .sunday { background: #59b4ff; }
+
+        .day:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+        .route {
+            font: bold 13px arial;
+            color: #fff;
+            text-align: left;
+            padding-left: 1%;
+        }
+        td {
+            border: solid 1px #000000;
+        }
+        td {
+            height: 25px;
+            border: 1px solid #000000;
+            font: bold 14px arial;
+            text-align: center;
+            padding: 1px 1px 1px 1px;
+            color:white;
+        }
+        td[style] {
+            width: 40%;
+        }
+
+        td {
+            display: table-cell;
+            vertical-align: inherit;
+            unicode-bidi: isolate;
+        }
+
+        table {
+            border-collapse: separate;
+            text-indent: initial;
+            border-spacing: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+    .calendar-container {
+        display: flex;
+        flex-wrap: nowrap; /* Keeps all items in one row */
+        justify-content: center; /* Centers items horizontally */
+        width: 100%;
+        overflow-x: auto; /* Enables horizontal scrolling if needed */
+        gap: 3px; /* Reduces spacing between items */
+        padding: 5px 0; /* Adds slight vertical padding */
+    }
+
+    .day {
+        flex: none;
+        width: 12%; /* Makes each day smaller */
+        min-width: 40px; /* Ensures a reasonable minimum size */
+        text-align: center;
+        font-size: 12px; /* Reduces font size */
+        padding: 3px; /* Adds slight padding */
+    }
+    .circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #178f98, #05459f);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            padding: 30px 0;
+            flex-wrap: wrap;
+        }
+        .step-name {
+            margin-top: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+        .wed {
+            font-size: 30px;
+            font-weight: bold;
+            color: #000000;
+        }
+        
+
+        .route {
+            font: bold 13px arial;
+            color: #fff;
+            text-align: left;
+            padding-left: 1%;
+            
+        }
+        td {
+            border: solid 1px #000000;
+        }
+        td {
+            height: 25px;
+            border: 1px solid #000000;
+            font: bold 14px arial;
+            text-align: center;
+            padding: 1px 1px 1px 1px;
+        }
+        td[style] {
+            width: 40%;
+        }
+
+        td {
+            display: table-cell;
+            vertical-align: inherit;
+            unicode-bidi: isolate;
+        }
+
+        table {
+            border-collapse: separate;
+            text-indent: initial;
+            border-spacing: 2px;
+        }
+        
+}
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img src="C:\Users\karth\Downloads\rit-logo-new.png" alt="RIT Logo" class="logo">
+        </a>
+        <div class="wed">TRANSPORT</div>
+    </header>
+
+    <!-- Steps Section -->
+    <section class="steps-container">
+        <div class="step">
+            <div class="circle">44 Buses</div>
+            <div class="step-name">Morning to College</div>
+        </div>
+        
+        <div class="step">
+            <div class="circle">43 Buses</div>
+            <div class="step-name">Return after 3.15 p.m.</div>
+        </div>
+        
+        <div class="step">
+            <div class="circle">1 Bus</div>
+            <div class="step-name">Return after 5.30 p.m.</div>
+        </div>
+    </section>
+
+    <!-- Weekly Calendar Bar -->
+    <section class="calendar-container">
+        <div class="day monday"><a href="monday.html">Monday</a></div>
+        <div class="day tuesday"><a href="tuesday.html">Tuesday</a></div>
+        <div class="day wednesday"><a href="wednesday.html">Wednesday</a></div>
+        <div class="day thursday"><a href="thursday.html">Thursday</a></div>
+        <div class="day friday"><a href="friday.html">Friday</a></div>
+        <div class="day saturday"><a href="saturday.html">Saturday</a></div>
+        <div class="day sunday"><a href="sunday.html">Sunday</a></div>
+    </section>
+    <script>
+        function showDetails(routeId) {
+            document.getElementById(routeId).style.display = "block";
+        }
+    
+        function hideDetails(routeId) {
+            document.getElementById(routeId).style.display = "none";
+        }
+    </script>
+    
+    
+
+    <table align="left" width="100%" cellpadding="2" cellspacing="2">
+
+
+
+        <tbody><tr>
+            <td width="5%" colspan="1" class="sno"><font color="#f5f5dc">Sno</font></td>
+            <td width="7%" colspan="1" class="rno"><font color="#f5f5dc">R.No</font></td>
+            <td width="40%" colspan="2" class="route"><font color="#f5f5dc"><b>Route Name</b></font></td>
+            <td width="10%" colspan="1"><font color="#f5f5dc">Boarding Pts</font></td>
+            <td width="13%" colspan="1" class="start" align="center"><font color="#f5f5dc">Starting time</font></td>
+            <td width="10%" colspan="1" class="prio1"><font color="#f5f5dc">Morning to College</font></td>
+            <td width="10%" colspan="1" class="prio1"><font color="#f5f5dc">Return after</font><br> <font color="#f5f5dc" size="4">3.15 pm</font></td>
+        </tr>  
+        <tr>
+            <td colspan="1" class="sno">01</td>
+            <td colspan="1" class="rno"> R01</td>
+            <td colspan="2" class="route"><a style=color:white; href="R15.html"><b>Ennore</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white; href="javascript:void(0);" 
+                   onmouseover="showDetails('route1')" 
+                   onmouseout="hideDetails('route1')">
+                    Timing
+                </a>
+                <div id="route1" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ffffff;padding: 10px;">
+                    <table width="325">
+                        <tbody><tr><td width="225" class="bptb" colspan="2"><b>R-1 :  ENNORE </b></td></tr>
+                        <tr><td width="225" class="bpt">Lift Gate</td><td class="time">		<b>5.50 am</b></td></tr>
+                        <tr><td width="225" class="bpt">Wimco Market</td><td class="time">		5.55</td></tr>
+                        <tr><td width="225" class="bpt">Ajax</td><td class="time">				6.00</td></tr>
+                        <tr><td width="225" class="bpt">Periyar Nagar</td><td class="time">		6.03</td></tr>
+                        <tr><td width="225" class="bpt">Thiruvortiyur Market</td><td class="time">6.08</td></tr>
+                        <tr><td width="225" class="bpt">Theradi</td><td class="time">			6.10</td></tr>
+                        <tr><td width="225" class="bpt">Ellaimman Koil</td><td class="time">		6.12</td></tr>
+                        <tr><td width="225" class="bpt">Raja Kadai</td><td class="time">			6.14</td></tr>
+                        <tr><td width="225" class="bpt">Toll Gate</td><td class="time">			6.15</td></tr>
+                        <tr><td width="225" class="bpt">Kasimedu</td><td class="time">			6.18</td></tr>
+                        <tr><td width="225" class="bpt">Kalmandapam</td><td class="time">			6.24</td></tr>
+                        <tr><td width="225" class="bpt">Royapuram Bridge</td><td class="time">			6.30</td></tr>
+
+                        <tr><td width="225" class="bpt">Beach Station</td><td class="time">		6.33</td></tr>
+                        <tr><td width="225" class="bpt">Parry's</td><td class="time">			6.37</td></tr>
+                        <tr><td width="225" class="bpt">Central</td><td class="time">			6.40</td></tr>
+                        <tr><td width="225" class="bpt">Egmore</td><td class="time">			6.43</td></tr>
+                        <tr><td width="225" class="bpt">Dasprakash</td><td class="time">			6.47 </td></tr>
+                        <tr><td width="225" class="bpt">Eaga Theatre</td><td class="time">		6.51</td></tr>
+                        <tr><td width="225" class="bpt">Amjikarai Market</td><td class="time">	6.54</td></tr>
+                        <tr><td width="225" class="bpt">RIT Campus</td><td class="time">			7.40 am</td></tr>
+                        </table>
+                </div>
+            </td>
+            <td class="start" align="center">5.50 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        
+        
+        <tr>
+            <td colspan="1" class="sno">02</td>
+            <td colspan="1" class="rno"> R01 A</td>
+            <td colspan="2" class="route"><a style=color:white;  href="R15.html"><b>Tondiarpet</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route2')" 
+                   onmouseout="hideDetails('route2')">
+                    Timing
+                </a>
+                <div id="route2" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+         <tbody><tr><td width="225" class="bptb" colspan="2"><b>R-1A :  Tondiarpet </b></td></tr>   
+        <tr><td width="225" class="bpt">New vannarpettai</td><td class="time">		<b>6.17am</b></td></tr>
+        <tr><td width="225" class="bpt">Apollo</td><td class="time">		6.18</td></tr>
+        <tr><td width="225" class="bpt">Tondiarpet</td><td class="time">			6.19</td></tr>
+        <tr><td width="225" class="bpt">Maharani</td><td class="time">	6.21</td></tr>
+        <tr><td width="225" class="bpt">Mint </td><td class="time">		6.22</td></tr>
+        <tr><td width="225" class="bpt">New Bus Stand Mint</td><td class="time">6.27</td></tr>
+        <tr><td width="225" class="bpt">Thirupalli street </td><td class="time">			6.33</td></tr>
+        <tr><td width="225" class="bpt">Aminijkarai </td><td class="time">		7.00</td></tr>
+        <tr><td width="225" class="bpt">Skywalk </td><td class="time">			7.02</td></tr>
+        <tr><td width="225" class="bpt">Arumbakkam</td><td class="time">	7.07</td></tr>
+        <tr><td width="225" class="bpt">Koyambedu Metro </td><td class="time">			7.10</td></tr>
+        <tr><td width="225" class="bpt">Vengaya mandi</td><td class="time">		7.16</td></tr>
+        <tr><td width="225" class="bpt">Ration stop (Nerkundram) </td><td class="time">		7.20</td></tr>
+        <tr><td width="225" class="bpt">Maduravoyal</td><td class="time">	7.21</td></tr>
+        <tr><td width="225" class="bpt">Maduravoyal Erikarai </td><td class="time">		7.25</td></tr>
+        <tr><td width="225" class="bpt">Vanagaram</td><td class="time">			7.29</td></tr>
+        
+    </table>
+</div>
+</td>
+<td class="start" align="center">5.50 am</td>
+<td colspan="1" class="prio1">√</td>
+<td colspan="1" class="prio1">√</td>
+</tr>
+        
+<td colspan="1" class="sno">03</td>
+<td colspan="1" class="rno"> R2</td>
+<td colspan="2" class="route"><a style=color:white;  href="R15.html"><b>Triplicane</b></a></td>
+<td colspan="1">
+    <a class="info" style=color:white;  href="javascript:void(0);" 
+       onmouseover="showDetails('route3')" 
+       onmouseout="hideDetails('route3')">
+        Timing
+    </a>
+    <div id="route3" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+        <table width="325">
+<tbody><tr><td width="225" class="bptb" colspan="2"><b>R-2 :  Triplicane </b></td></tr>   
+    <tr><td width="225" class="bpt">Chintadripet (Post Offiec) </td><td class="time"> <b>                  6.20 am</b> </td></tr>
+    <tr><td width="225" class="bpt">D1 Police Station</td><td class="time">                    		6.25</td></tr>
+    <tr><td width="225" class="bpt">Triplicane -High Way </td><td class="time">    		        6.29</td></tr>
+    <tr><td width="225" class="bpt">Ice House Police Station </td><td class="time">                       6.32</td></tr>
+    <tr><td width="225" class="bpt">Meersahibpet-Market </td><td class="time">                6.35</td></tr>
+    <tr><td width="225" class="bpt">Royapettah New College</td><td class="time">             6.39</td></tr>
+    <tr><td width="225" class="bpt">Sterling Road (Bharath Petrol Bunk)</td><td class="time">6.40</td></tr>
+    <tr><td width="225" class="bpt">Choolaimedu Subway</td><td class="time">               6.43</td></tr>
+    <tr><td width="225" class="bpt">Choolaimedu bus stop</td><td class="time">               6.45</td></tr>
+    <tr><td width="225" class="bpt">Anna Arch</td><td class="time">	6.50</td></tr>
+    <tr><td width="225" class="bpt">Arumbakkam Panchaliamman Koil</td><td class="time">      6.53</td></tr>
+    <tr><td width="225" class="bpt">NSK</td><td class="time">      6.55</td></tr>
+    <tr><td width="225" class="bpt">Maduravoyal- Murugan Store </td><td class="time">      6.58</td></tr>
+    <tr><td width="225" class="bpt">RIT Campus</td><td class="time">                         7.40 am</td></tr>
+
+</table>
+</div>
+</td>
+<td class="start" align="center">5.50 am</td>
+<td colspan="1" class="prio1">√</td>
+<td colspan="1" class="prio1">√</td>
+</tr>
+        
+<tr>
+    <td colspan="1" class="sno">04</td>
+    <td colspan="1" class="rno"> R03</td>
+    <td colspan="2" class="route"><a style=color:white; href="R15.html"><b>Choolai</b></a></td>
+    <td colspan="1">
+        <a class="info" style=color:white;  href="javascript:void(0);" 
+           onmouseover="showDetails('route4')" 
+           onmouseout="hideDetails('route4')">
+            Timing
+        </a>
+        <div id="route4" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+            <table width="325">
+                <tbody><tr><td width="225" class="bptb" colspan="2"><b>R-3 : CHOOLAI</b></td></tr>
+                    <tr><td width="225" class="bpt">Pulianthope</td><td class="time">       <b> 6.20 am</b></td></tr>
+                    <tr><td width="225" class="bpt">Choolai Post Office </td><td class="time">                    6.25</td></tr>
+                    <tr><td width="225" class="bpt">Purasaivakkam Doveton </td><td class="time">              6.30</td></tr>
+                    <tr><td width="225" class="bpt">Kellys Signal</td><td class="time">              6.33</td></tr>
+                    <tr><td width="225" class="bpt">Water tank road signal </td><td class="time">            6.40</td></tr>
+                    <tr><td width="225" class="bpt">Kilpauk Garden</td><td class="time">              6.45</td></tr>
+                    <tr><td width="225" class="bpt">Chinthamani</td><td class="time">                6.50</td></tr>
+                    <tr><td width="225" class="bpt">Anna Nagar Roundtana</td><td class="time">           6.55</td></tr>
+                    <tr><td width="225" class="bpt">Thirumangalam Blue star </td><td class="time">           6.57</td></tr>
+                    <tr><td width="225" class="bpt">VR Mall </td><td class="time">           7.00</td></tr>
+                    <tr><td width="225" class="bpt">Maduravoyal Ration Shop</td><td class="time">    7.10</td></tr>
+                    <tr><td width="225" class="bpt">RIT Campus</td><td class="time">                         7.40 am</td></tr>
+                </table>
+        </div>
+    </td>
+    <td class="start" align="center">5.50 am</td>
+    <td colspan="1" class="prio1">√</td>
+    <td colspan="1" class="prio1">√</td>
+</tr>
+<tr>
+    <td colspan="1" class="sno">05</td>
+    <td colspan="1" class="rno"> R03 A</td>
+    <td colspan="2" class="route"><a style=color:white;  href="R15.html"><b>Collector nagar</b></a></td>
+    <td colspan="1">
+        <a class="info" style=color:white; href="javascript:void(0);" 
+           onmouseover="showDetails('route5')" 
+           onmouseout="hideDetails('route5')">
+            Timing
+        </a>
+        <div id="route5" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+            <table width="325">
+                <tbody><tr><td width="225" class="bptb" colspan="2"><b>R-3A : Collector Nagar</b></td></tr>
+                    <tr><td width="225" class="bpt">Collector nagar</td><td class="time">         6.50am</td></tr>
+                    <tr><td width="225" class="bpt">Golden flat</td><td class="time">         6.55</td></tr>
+                    <tr><td width="225" class="bpt">Mogappair West depot </td><td class="time">        7.00</td></tr>
+                    <tr><td width="225" class="bpt">Nolambur</td><td class="time">         7.03</td></tr>
+                    <tr><td width="225" class="bpt">MGR University </td><td class="time">              7.08</td></tr>
+                    
+                    <tr><td width="225" class="bpt">RIT Campus</td><td class="time">             7.40 am</td></tr>
+                </table>
+        </div>
+    </td>
+    <td class="start" align="center">5.50 am</td>
+    <td colspan="1" class="prio1">√</td>
+    <td colspan="1" class="prio1">√</td>
+</tr>
+        
+<tr>
+    <td colspan="1" class="sno">06</td>
+    <td colspan="1" class="rno"> R03 B</td>
+    <td colspan="2" class="route"><a style=color:white;  href="R15.html"><b>Water Tank</b></a></td>
+    <td colspan="1">
+        <a class="info" style=color:white;  href="javascript:void(0);" 
+           onmouseover="showDetails('route6')" 
+           onmouseout="hideDetails('route6')">
+            Timing
+        </a>
+        <div id="route6" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+            <table width="325">
+                <tbody><tr><td width="225" class="bptb" colspan="2"><b>R-3B : Water Tank</b></td></tr>
+                    <tr><td width="225" class="bpt"> Gangaiamman koil  </td><td class="time">    		 <b> 6.40 am</b></td></tr>
+                    <tr><td width="225" class="bpt">Madina masjid </td><td class="time">                    6.43</td></tr>
+                    <tr><td width="225" class="bpt">New Avadi Road </td><td class="time">           	  	 6.45</td></tr>
+                    <tr><td width="225" class="bpt">Chintamani </td><td class="time">            		 6.50</td></tr>
+                    <tr><td width="225" class="bpt">Nalli Store </td><td class="time">                    6.58</td></tr>
+                    <tr><td width="225" class="bpt">Anna Nagar Metro </td><td class="time">               7.05</td></tr>
+                    <tr><td width="225" class="bpt">Thirumangalam Metro</td><td class="time">            	7.10</td></tr>
+                    <tr><td width="225" class="bpt">Nerkundram </td><td class="time">       			     7.15</td></tr>
+                    <tr><td width="225" class="bpt">Maduravaoyal Ration Shop </td><td class="time">         7.25</td></tr>
+                    <tr><td width="225" class="bpt">Maduravoyal Erikarai</td><td class="time">      		7.27</td></tr>
+
+                    <tr><td width="225" class="bpt">RIT Campus</td><td class="time">                        7.40 am</td></tr>
+                </table>
+        </div>
+    </td>
+    <td class="start" align="center">5.50 am</td>
+    <td colspan="1" class="prio1">√</td>
+    <td colspan="1" class="prio1">√</td>
+</tr>
+        
+        
+        
+<tr>
+    <td colspan="1" class="sno">07</td>
+    <td colspan="1" class="rno"> R04</td>
+    <td colspan="2" class="route"><a style=color:white;  href="R15.html"><b>East Mugappair</b></a></td>
+    <td colspan="1">
+        <a class="info" style=color:white; href="javascript:void(0);" 
+           onmouseover="showDetails('route7')" 
+           onmouseout="hideDetails('route7')">
+            Timing
+        </a>
+        <div id="route7" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+            <table width="325">
+                <tbody><tr><td width="225" class="bptb" colspan="2"><b>R-4 : East Mugappair</b></td></tr>
+                    <tr><td width="225" class="bpt">JJ Nagar Police Station</td><td class="time"><b>6.30 am</b></td></tr>
+                    <tr><td width="225" class="bpt">HDFC Bank</td><td class="time">              6.32</td></tr>
+                    <tr><td width="225" class="bpt">IOB Bank</td><td class="time">               6.35</td></tr>
+                    <tr><td width="225" class="bpt">7 H Bus Depot</td><td class="time">          6.40</td></tr>
+                    <tr><td width="225" class="bpt">Amutha School</td><td class="time">          6.50</td></tr>
+                    <tr><td width="225" class="bpt">D.R.Super Market</td><td class="time">       6.52</td></tr>
+                    <tr><td width="225" class="bpt">Nolambur</td><td class="time">               6.55</td></tr>
+                    <tr><td width="225" class="bpt">Meadows Apprtment</td><td class="time">      6.57</td></tr>
+                    <tr><td width="225" class="bpt">MGR University</td><td class="time">         7.00</td></tr>
+                    <tr><td width="225" class="bpt">RIT Camus</td><td class="time">              7.40 am</td></tr>
+                </table>
+        </div>
+    </td>
+    <td class="start" align="center">5.50 am</td>
+    <td colspan="1" class="prio1">√</td>
+    <td colspan="1" class="prio1">√</td>
+</tr>
+<tr>
+    <td colspan="1" class="sno">08</td>
+    <td colspan="1" class="rno"> R05</td>
+    <td colspan="2" class="route"><a style=color:white;  href="R15.html"><b>CIT Nagar</b></a></td>
+    <td colspan="1">
+        <a class="info" style=color:white; href="javascript:void(0);" 
+           onmouseover="showDetails('route8')" 
+           onmouseout="hideDetails('route8')">
+            Timing
+        </a>
+        <div id="route8" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+            <table width="325">
+                <tbody><tr><td width="225" class="bptb" colspan="2"><b>R-5 :    CIT NAGAR</b></td></tr>
+                    <tr><td width="225" class="bpt">CIT Nagar</td><td class="time">          <b>6.10 am</b></td></tr>
+                    <tr><td width="225" class="bpt">Aranganathan Subway</td><td class="time">6.12</td></tr>
+                    <tr><td width="225" class="bpt">Srinivasa Theatre</td><td class="time">  6.14</td></tr>
+                    <tr><td width="225" class="bpt">Metupalayam</td><td class="time">        6.16</td></tr>
+                    <tr><td width="225" class="bpt">Sangamam Hotel</td><td class="time">     6.19</td></tr>
+                    <tr><td width="225" class="bpt">Aryagowda Road</td><td class="time">     6.24</td></tr>
+                    <tr><td width="225" class="bpt">Vivek</td><td class="time">              6.29</td></tr>
+                    <tr><td width="225" class="bpt">Usman Road</td><td class="time">         6.34</td></tr>
+                    <!-- <tr><td width=225  class=bpt>Loyalo College</td><td class=time>     6.40</td></tr>
+                    <tr><td width=225  class=bpt>MMDA Water Tank</td><td class=time>    6.45</td></tr>
+                    <tr><td width=225  class=bpt>MMDA Bus Stand</td><td class=time>     6.46</td></tr>
+                    -->
+                    <tr><td width="225" class="bpt">RIT Campus</td><td class="time">         7.45 am</td></tr>
+                </table>
+        </div>
+    </td>
+    <td class="start" align="center">5.50 am</td>
+    <td colspan="1" class="prio1">√</td>
+    <td colspan="1" class="prio1">√</td>
+</tr>
+        
+<tr>
+    <td colspan="1" class="sno">09</td>
+    <td colspan="1" class="rno"> R05 A</td>
+    <td colspan="2" class="route"><a style=color:white;  href="R15.html"><b>Loyola College</b></a></td>
+    <td colspan="1">
+        <a class="info" style=color:white;  href="javascript:void(0);" 
+           onmouseover="showDetails('route9')" 
+           onmouseout="hideDetails('route9')">
+            Timing
+        </a>
+        <div id="route9" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+            <table width="325">
+                <tbody><tr><td width="225" class="bptb" colspan="2"><b>R-5A :    LOYOLA COLLEGE</b></td></tr>
+                    <tr><td width="225" class="bpt">Loyola College</td><td class="time">    			 6.40 am </td></tr>
+<tr><td width="225" class="bpt">Choolaimedu </td><td class="time">     			 6.45 </td></tr>
+<tr><td width="225" class="bpt">Metha Nagar</td><td class="time">     			  6.49 </td></tr>
+<tr><td width="225" class="bpt">NSK Nagar</td><td class="time">         			  6.55 </td></tr>
+<tr><td width="225" class="bpt">Arumbakkam (SBI Bank) </td><td class="time">       7.00 </td></tr>
+<tr><td width="225" class="bpt">MMDA Cholan Street </td><td class="time">         7.05 </td></tr>
+<tr><td width="225" class="bpt">MMDA Vallavan Hotel </td><td class="time">     	 7.10 </td></tr>
+<tr><td width="225" class="bpt">CMBT (Koyambedu) </td><td class="time">           7.15 </td></tr>
+<tr><td width="225" class="bpt">Rohini (Theatre) </td><td class="time">    		 7.18 </td></tr>
+
+<tr><td width="225" class="bpt">Nerkundram Vengaya Mandi </td><td class="time">   7.22 </td></tr>
+<tr><td width="225" class="bpt">Maduravoyal Erikarai </td><td class="time">       7.25 </td></tr>
+
+<tr><td width="225" class="bpt">RIT Campus</td><td class="time">         7.45 am</td></tr>
+                </table>
+        </div>
+    </td>
+    <td class="start" align="center">5.50 am</td>
+    <td colspan="1" class="prio1">√</td>
+    <td colspan="1" class="prio1">√</td>
+</tr>
+        
+        
+        
+        
+        
+        
+        
+<tr>
+    <td colspan="1" class="sno">10</td>
+    <td colspan="1" class="rno"> R06</td>
+    <td colspan="2" class="route"><a style=color:white; href="R15.html"><b>Chinmayanagar</b></a></td>
+    <td colspan="1">
+        <a class="info" style=color:white;  href="javascript:void(0);" 
+           onmouseover="showDetails('route10')" 
+           onmouseout="hideDetails('route10')">
+            Timing
+        </a>
+        <div id="route10" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+            <table width="325">
+                <tbody><tr><td width="225" class="bptb" colspan="2"><b>R-6 :    Chinmayanagar</b></td></tr>
+                    <tr><td width="225" class="bpt">Loyola College</td><td class="time">    			 6.40 am </td></tr>
+                    <tr><td width="225" class="bpt">Chinmaiya Nagar</td><td class="time">6.10 am</td></tr>
+                    <tr><td width="225" class="bpt">Sai Nagar</td><td class="time">		6.12 </td></tr>
+                    <tr><td width="225" class="bpt">Natesan Nagar</td><td class="time">	6.13 </td></tr>
+                    <tr><td width="225" class="bpt">Elango Nagar</td><td class="time">	6.14 </td></tr>
+                    <tr><td width="225" class="bpt">Virugampakkam</td><td class="time">	6.17 </td></tr>
+                    <tr><td width="225" class="bpt">KK Nagar</td><td class="time">		6.20 </td></tr>
+                    <tr><td width="225" class="bpt">KK Nagar ESI</td><td class="time">	6.27 </td></tr>
+                    <tr><td width="225" class="bpt">Ashok Pillar</td><td class="time">	6.32 </td></tr>
+                    <tr><td width="225" class="bpt">Kasi Theatre</td><td class="time">	6.37 </td></tr>
+                    <tr><td width="225" class="bpt">Ekkatuthangal</td><td class="time">	6.42 </td></tr>
+                    <tr><td width="225" class="bpt">Olympia</td><td class="time">6.43</td></tr>
+                    <tr><td width="225" class="bpt">Porur Saravana Store</td><td class="time">6.55</td></tr>
+                    
+                    <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                </table>
+        </div>
+    </td>
+    <td class="start" align="center">5.50 am</td>
+    <td colspan="1" class="prio1">√</td>
+    <td colspan="1" class="prio1">√</td>
+</tr>
+        
+        
+<tr>
+    <td colspan="1" class="sno">11</td>
+    <td colspan="1" class="rno"> R07</td>
+    <td colspan="2" class="route"><a style=color:white;  href="R15.html"><b>Santhome</b></a></td>
+    <td colspan="1">
+        <a class="info" style=color:white;  href="javascript:void(0);" 
+           onmouseover="showDetails('route11')" 
+           onmouseout="hideDetails('route11')">
+            Timing
+        </a>
+        <div id="route11" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+            <table width="325">
+                <tbody><tr><td width="225" class="bptb" colspan="2"><b>R-7 :    Santhome</b></td></tr>
+                    <tr><td width="225" class="bpt">Mandaveli Bus Depot</td><td class="time">6.10 am</td></tr>
+<tr><td width="225" class="bpt">Pattinapakkam</td><td class="time">		6.15 am</td></tr>
+<tr><td width="225" class="bpt">Kutchery Road</td><td class="time">		6.20 am</td></tr>
+<tr><td width="225" class="bpt">Luz Corner</td><td class="time">			6.25 am</td></tr>
+<tr><td width="225" class="bpt">P.S.Sivasamy Road</td><td class="time">	6.27 am</td></tr>
+<tr><td width="225" class="bpt">SIET College</td><td class="time">		6.32 am</td></tr>
+<tr><td width="225" class="bpt">Nanthanam Signal</td><td class="time">	6.37 am</td></tr>
+<tr><td width="225" class="bpt">Saidapet Vetrinary Hospital</td><td class="time">6.42 am</td></tr>
+<tr><td width="225" class="bpt">Saidapet Bus Stop</td><td class="time">	6.47 am</td></tr>
+<tr><td width="225" class="bpt">Guindy</td><td class="time">				6.49 am</td></tr>
+<tr><td width="225" class="bpt">Butt Road</td><td class="time">			6.55 am</td></tr>
+<tr><td width="225" class="bpt">Chennai Trade Centre</td><td class="time">7.10 am</td></tr>
+<tr><td width="225" class="bpt">Porur</td><td class="time">				7.15 am</td></tr>
+<tr><td width="225" class="bpt">Ayyapanthangal</td><td class="time">		7.18 am</td></tr>
+<tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                </table>
+        </div>
+    </td>
+    <td class="start" align="center">5.50 am</td>
+    <td colspan="1" class="prio1">√</td>
+    <td colspan="1" class="prio1">√</td>
+</tr>
+        
+        
+<tr>
+    <td colspan="1" class="sno">12</td>
+    <td colspan="1" class="rno"> R08</td>
+    <td colspan="2" class="route"><a style=color:white;  href="R15.html"><b>Kovilambakkam</b></a></td>
+    <td colspan="1">
+        <a class="info" style=color:white;  href="javascript:void(0);" 
+           onmouseover="showDetails('route12')" 
+           onmouseout="hideDetails('route12')">
+            Timing
+        </a>
+        <div id="route12" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+            <table width="325">
+                <tbody><tr><td width="225" class="bptb" colspan="2"><b>R-8 :    Kovilambakkam</b></td></tr>
+                    <tr><td width="225" class="bpt">Kovilampakkam</td><td class="time">					6.10 am</td></tr>
+<tr><td width="225" class="bpt">Keelkattalai Bus Stop</td><td class="time">			6.12 am</td></tr>
+<tr><td width="225" class="bpt">Madipakkam UTI Bank</td><td class="time">			6.15 am</td></tr>
+<tr><td width="225" class="bpt">Madipakkam Koot Road Bus stop</td><td class="time">	6.16 am</td></tr>
+<tr><td width="225" class="bpt">Ranga Theatre</td><td class="time">					6.18 am</td></tr>
+<tr><td width="225" class="bpt">Nanganallur Chidambaram Stores</td><td class="time">	6.10 am</td></tr>
+<tr><td width="225" class="bpt">Nanganallur Saravana Hotel</td><td class="time">		6.22 am</td></tr>
+<tr><td width="225" class="bpt">Vanuvampet Church</td><td class="time">				6.25 am</td></tr>
+<tr><td width="225" class="bpt">Surendhar Nagar Bus Stop</td><td class="time">		6.27 am</td></tr>
+<tr><td width="225" class="bpt">Jayalakshmi Theatre</td><td class="time">			6.29 am</td></tr>
+<tr><td width="225" class="bpt">Thillai Ganga Nagar Sub Way</td><td class="time">	6.32 am</td></tr>
+<tr><td width="225" class="bpt">Aazar Khana Bus Stop</td><td class="time">			6.35 am</td></tr>
+<tr><td width="225" class="bpt">Butt Road</td><td class="time">						6.37 am</td></tr>
+<tr><td width="225" class="bpt">Ramavaram</td><td class="time">						6.39 am</td></tr>
+<tr><td width="225" class="bpt">College Campus</td><td class="time">					7.40 am</td></tr>
+                </table>
+        </div>
+    </td>
+    <td class="start" align="center">5.50 am</td>
+    <td colspan="1" class="prio1">√</td>
+    <td colspan="1" class="prio1">√</td>
+</tr>
+        
+        
+        
+<tr>
+    <td colspan="1" class="sno">13</td>
+    <td colspan="1" class="rno">R09</td>
+    <td colspan="2" class="route"><a style=color:white;  href="R09.html"><b>MKB Nagar</b></a></td>
+    <td colspan="1">
+        <a class="info" style=color:white;  href="javascript:void(0);" 
+           onmouseover="showDetails('route13')" 
+           onmouseout="hideDetails('route13')">
+            Timing
+        </a>
+        <div id="route13" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+            <table width="325">
+                <tbody>
+                    <tr><td width="225" class="bptb" colspan="2"><b>R-9 : MKB Nagar</b></td></tr>
+                    <tr><td width="225" class="bpt">Vyasarpadi</td><td class="time">6.00 am</td></tr>
+                    <tr><td width="225" class="bpt">MKB Nagar</td><td class="time">6.05 am</td></tr>
+                    <tr><td width="225" class="bpt">E.B. Stop</td><td class="time">6.08 am</td></tr>
+                    <tr><td width="225" class="bpt">Kannadhasan Nagar</td><td class="time">6.10 am</td></tr>
+                    <tr><td width="225" class="bpt">M.R. Nagar</td><td class="time">6.13 am</td></tr>
+                    <tr><td width="225" class="bpt">Lakshmi Amman Nagar</td><td class="time">6.22 am</td></tr>
+                    <tr><td width="225" class="bpt">B.B. Road</td><td class="time">6.26 am</td></tr>
+                    <tr><td width="225" class="bpt">Perambur Market</td><td class="time">6.34 am</td></tr>
+                    <tr><td width="225" class="bpt">Agaram</td><td class="time">6.40 am</td></tr>
+                    <tr><td width="225" class="bpt">Peravalur Road</td><td class="time">6.42 am</td></tr>
+                    <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </td>
+    <td class="start" align="center">6.00 am</td>
+    <td colspan="1" class="prio1">√</td>
+    <td colspan="1" class="prio1">√</td>
+</tr>
+<tr>
+    <td colspan="1" class="sno">14</td>
+    <td colspan="1" class="rno">R9</td>
+    <td colspan="2" class="route"><a style=color:white; href="R09.html"><b>Perambur</b></a></td>
+    <td colspan="1">
+        <a class="info" style=color:white;  href="javascript:void(0);" 
+           onmouseover="showDetails('route14')" 
+           onmouseout="hideDetails('route14')">
+            Timing
+        </a>
+        <div id="route14" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+            <table width="325">
+                <tbody>
+                    <tr><td width="225" class="bpt">BB Road </td><td class="time">          6.30am</td></tr>
+<tr><td width="225" class="bpt">Perambur bus stop</td><td class="time">           6.35 </td></tr>
+<tr><td width="225" class="bpt">Perambur Railway station </td><td class="time">  6.39</td></tr>
+<tr><td width="225" class="bpt">Perambur Church </td><td class="time">           6.41</td></tr>
+<tr><td width="225" class="bpt">Sembium police station</td><td class="time">     6.43</td></tr>
+<tr><td width="225" class="bpt"> Gandhi Salai </td><td class="time">             6.45</td></tr>
+<tr><td width="225" class="bpt"> Venus mall </td><td class="time">              6.47</td></tr> 
+<tr><td width="225" class="bpt">Retteri</td><td class="time">                     6.50</td></tr>
+<tr><td width="225" class="bpt">Senthil Nagar</td><td class="time">              6.55</td></tr>
+
+
+<tr><td width="225" class="bpt">RIT Campus</td><td class="time">                 7.40 am</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </td>
+    <td class="start" align="center">5.50 am</td>
+    <td colspan="1" class="prio1">√</td>
+    <td colspan="1" class="prio1">√</td>
+</tr>
+        
+        
+        
+        <tr>
+            <td colspan="1" class="sno">15</td>
+            <td colspan="1" class="rno">R10</td>
+            <td colspan="2" class="route"><a style=color:white;  href="R09.html"><b>Thachoor</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route15')" 
+                   onmouseout="hideDetails('route15')">
+                    Timing
+                </a>
+                <div id="route15" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-10 : Thachoor</b></td></tr>
+                            <tr><td width="225" class="bpt">Thachoor</td><td class="time">5.50 am</td></tr>
+                            <tr><td width="225" class="bpt">Panjetty</td><td class="time">5.52 am</td></tr>
+                            <tr><td width="225" class="bpt">Janappanchatram Bypass</td><td class="time">5.55 am</td></tr>
+                            <tr><td width="225" class="bpt">Karanodai Bypass</td><td class="time">5.58 am</td></tr>
+                            <tr><td width="225" class="bpt">Vijaya Nallur</td><td class="time">6.03 am</td></tr>
+                            <tr><td width="225" class="bpt">Toll Gate</td><td class="time">6.05 am</td></tr>
+                            <tr><td width="225" class="bpt">Padianallur</td><td class="time">6.07 am</td></tr>
+                            <tr><td width="225" class="bpt">Red Hills (GRT)</td><td class="time">6.10 am</td></tr>
+                            <tr><td width="225" class="bpt">Red Hills Market</td><td class="time">6.12 am</td></tr>
+                            <tr><td width="225" class="bpt">Kavangarai</td><td class="time">6.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Puzhal Jail</td><td class="time">6.17 am</td></tr>
+                            <tr><td width="225" class="bpt">Puzhal Camp</td><td class="time">6.20 am</td></tr>
+                            <tr><td width="225" class="bpt">Velammal College</td><td class="time">6.25 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">5.50 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        
+        <tr>
+            <td colspan="1" class="sno">16</td>
+            <td colspan="1" class="rno">R11</td>
+            <td colspan="2" class="route"><a style=color:white; href="R11.html"><b>Chengalpattu</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route16')" 
+                   onmouseout="hideDetails('route16')">
+                    Timing
+                </a>
+                <div id="route16" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-11 : Chengalpattu</b></td></tr>
+                            <tr><td width="225" class="bpt">Srinivasapuram</td><td class="time">6.00 am</td></tr>
+                            <tr><td width="225" class="bpt">Guduvanchery</td><td class="time">6.02 am</td></tr>
+                            <tr><td width="225" class="bpt">E.B</td><td class="time">6.05 am</td></tr>
+                            <tr><td width="225" class="bpt">Urapakkam</td><td class="time">6.10 am</td></tr>
+                            <tr><td width="225" class="bpt">Vandalur</td><td class="time">6.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Perungalathur</td><td class="time">6.20 am</td></tr>
+                            <tr><td width="225" class="bpt">Irrummpuliyur</td><td class="time">6.23 am</td></tr>
+                            <tr><td width="225" class="bpt">Sanitoriyum MEPZ</td><td class="time">6.28 am</td></tr>
+                            <tr><td width="225" class="bpt">T.B.Hospital</td><td class="time">6.30 am</td></tr>
+                            <tr><td width="225" class="bpt">Nagalkani</td><td class="time">6.40 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.00 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        
+        <tr>
+            <td colspan="1" class="sno">17</td>
+            <td colspan="1" class="rno">R12</td>
+            <td colspan="2" class="route"><a style=color:white;  href="f12.html"><b>Manali</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route17')" 
+                   onmouseout="hideDetails('route17')">
+                    Timing
+                </a>
+                <div id="route17" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-12 : Manali</b></td></tr>
+                            <tr><td width="225" class="bpt">Manali Market</td><td class="time">6.05 am</td></tr>
+                            <tr><td width="225" class="bpt">MMDA 3rd Main Road</td><td class="time">6.10 am</td></tr>
+                            <tr><td width="225" class="bpt">MMDA 1st Main Road</td><td class="time">6.12 am</td></tr>
+                            <tr><td width="225" class="bpt">Madavaram Milk Colony</td><td class="time">6.17 am</td></tr>
+                            <tr><td width="225" class="bpt">Arul Nagar</td><td class="time">6.19 am</td></tr>
+                            <tr><td width="225" class="bpt">Thapalpetti</td><td class="time">6.22 am</td></tr>
+                            <tr><td width="225" class="bpt">Moolakadai</td><td class="time">6.27 am</td></tr>
+                            <tr><td width="225" class="bpt">Donbosco</td><td class="time">6.31 am</td></tr>
+                            <tr><td width="225" class="bpt">Thiruvika Nagar</td><td class="time">6.35 am</td></tr>
+                            <tr><td width="225" class="bpt">Kolathur Welding Shop</td><td class="time">6.43 am</td></tr>
+                            <tr><td width="225" class="bpt">Kolathur Mugambigai Theatre</td><td class="time">6.45 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.05 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        
+        <tr>
+            <td colspan="1" class="sno">18</td>
+            <td colspan="1" class="rno">R13</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f13.php"><b>Vyasarpadi</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route18')" 
+                   onmouseout="hideDetails('route18')">
+                    Timing
+                </a>
+                <div id="route18" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-13 : Vyasarpadi</b></td></tr>
+                            <tr><td width="225" class="bpt">Ganeshapuram</td><td class="time">6.10 am</td></tr>
+                            <tr><td width="225" class="bpt">G3 Police Station</td><td class="time">6.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Pattalam</td><td class="time">6.18 am</td></tr>
+                            <tr><td width="225" class="bpt">Otteri</td><td class="time">6.20 am</td></tr>
+                            <tr><td width="225" class="bpt">Podi Kadai</td><td class="time">6.23 am</td></tr>
+                            <tr><td width="225" class="bpt">T.B.Hospital</td><td class="time">6.25 am</td></tr>
+                            <tr><td width="225" class="bpt">Ayanawaram Signal</td><td class="time">6.27 am</td></tr>
+                            <tr><td width="225" class="bpt">Sayyani</td><td class="time">6.30 am</td></tr>
+                            <tr><td width="225" class="bpt">Ayanawaram Noor Hotel</td><td class="time">6.33 am</td></tr>
+                            <tr><td width="225" class="bpt">Joint Office</td><td class="time">6.35 am</td></tr>
+                            <tr><td width="225" class="bpt">Ayanawaram Railway Quarters</td><td class="time">6.37 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.20 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        <tr>
+            <td colspan="1" class="sno">19</td>
+            <td colspan="1" class="rno">R13A</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f13a.php"><b>ICF</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route19')" 
+                   onmouseout="hideDetails('route19')">
+                    Timing
+                </a>
+                <div id="route19" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-13A : ICF</b></td></tr>
+                            <tr><td width="225" class="bpt">ICF Signal</td><td class="time">6.45 am</td></tr>
+                            <tr><td width="225" class="bpt">Villivakkam Bus Stand</td><td class="time">6.50 am</td></tr>
+                            <tr><td width="225" class="bpt">Korattur Signal</td><td class="time">6.55 am</td></tr>
+                            <tr><td width="225" class="bpt">Nolambur Signal</td><td class="time">7.05 am</td></tr>
+                            <tr><td width="225" class="bpt">Vanagaram</td><td class="time">7.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Velappanchavadi</td><td class="time">7.23 am</td></tr>
+                            <tr><td width="225" class="bpt">Poonamallee Bypass</td><td class="time">7.30 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.45 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        
+        
+        
+        <tr>
+            <td colspan="1" class="sno">20</td>
+            <td colspan="1" class="rno">R14</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f14.php"><b>Thiruvallur</b></a></td>
+            <td colspan="1">
+                <a class="info"style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route20')" 
+                   onmouseout="hideDetails('route20')">
+                    Timing
+                </a>
+                <div id="route20" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-14 : Thiruvallur</b></td></tr>
+                            <tr><td width="225" class="bpt">Sevapetai</td><td class="time">6.25 am</td></tr>
+                            <tr><td width="225" class="bpt">Kakkalur</td><td class="time">6.30 am</td></tr>
+                            <tr><td width="225" class="bpt">Poonga Nagar</td><td class="time">6.35 am</td></tr>
+                            <tr><td width="225" class="bpt">GRT</td><td class="time">6.50 am</td></tr>
+                            <tr><td width="225" class="bpt">Manavalanagar Signal</td><td class="time">6.55 am</td></tr>
+                            <tr><td width="225" class="bpt">Manavalanagar Railway Station</td><td class="time">6.57 am</td></tr>
+                            <tr><td width="225" class="bpt">Putlur</td><td class="time">7.10 am</td></tr>
+                            <tr><td width="225" class="bpt">Aranvoyal</td><td class="time">7.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Puthuchatram (India Jappan Company)</td><td class="time">7.20 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.30 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        <tr>
+            <td colspan="1" class="sno">21</td>
+            <td colspan="1" class="rno">R14A</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f14a.php"><b>Kakkalur</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route21')" 
+                   onmouseout="hideDetails('route21')">
+                    Timing
+                </a>
+                <div id="route21" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-14A : Kakkalur</b></td></tr>
+                            <tr><td width="225" class="bpt">Kakkalur Signal</td><td class="time">6.55 am</td></tr>
+                            <tr><td width="225" class="bpt">SBI Bank</td><td class="time">6.58 am</td></tr>
+                            <tr><td width="225" class="bpt">Vellavedu</td><td class="time">7.20 am</td></tr>
+                            <tr><td width="225" class="bpt">Thirumazhisai</td><td class="time">7.25 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.55 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        
+        <tr>
+            <td colspan="1" class="sno">22</td>
+            <td colspan="1" class="rno">R15</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f15.php"><b>Kancheepuram</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white; href="javascript:void(0);" 
+                   onmouseover="showDetails('route22')" 
+                   onmouseout="hideDetails('route22')">
+                    Timing
+                </a>
+                <div id="route22" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-15 : Kancheepuram</b></td></tr>
+                            <tr><td width="225" class="bpt">Ayyangarkulam</td><td class="time">6.00 am</td></tr>
+                            <tr><td width="225" class="bpt">Housing Board</td><td class="time">6.05 am</td></tr>
+                            <tr><td width="225" class="bpt">Collector Office</td><td class="time">6.07 am</td></tr>
+                            <tr><td width="225" class="bpt">Rangasamy Kulam</td><td class="time">6.15 am</td></tr>
+                            <tr><td width="225" class="bpt">College Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.00 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        <tr>
+            <td colspan="1" class="sno">23</td>
+            <td colspan="1" class="rno">R15A</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f15a.php"><b>Orikkai</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route23')" 
+                   onmouseout="hideDetails('route23')">
+                    Timing
+                </a>
+                <div id="route23" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-15A : Orikkai</b></td></tr>
+                            <tr><td width="225" class="bpt">Orikkai</td><td class="time">6.15 am</td></tr>
+                            <tr><td width="225" class="bpt">JJ Nagar</td><td class="time">6.17 am</td></tr>
+                            <tr><td width="225" class="bpt">Keerai Mandapam</td><td class="time">6.20 am</td></tr>
+                            <tr><td width="225" class="bpt">Tollgate</td><td class="time">6.23 am</td></tr>
+                            <tr><td width="225" class="bpt">Pachaiyappa's College</td><td class="time">6.30 am</td></tr>
+                            <tr><td width="225" class="bpt">Ayyampettai</td><td class="time">6.32 am</td></tr>
+                            <tr><td width="225" class="bpt">Rajampettai</td><td class="time">6.40 am</td></tr>
+                            <tr><td width="225" class="bpt">Walajabad</td><td class="time">6.50 am</td></tr>
+                            <tr><td width="225" class="bpt">Natha Nallur</td><td class="time">7.00 am</td></tr>
+                            <tr><td width="225" class="bpt">Panrutti</td><td class="time">7.03 am</td></tr>
+                            <tr><td width="225" class="bpt">Oragadam</td><td class="time">7.12 am</td></tr>
+                            <tr><td width="225" class="bpt">Arun Excello</td><td class="time">7.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Sriperumbudur High School</td><td class="time">7.20 am</td></tr>
+                            <tr><td width="225" class="bpt">Sriperumbudur Tollgate</td><td class="time">7.25 am</td></tr>
+                            <tr><td width="225" class="bpt">Irungattukottai Bus Stand</td><td class="time">7.30 am</td></tr>
+                            <tr><td width="225" class="bpt">College Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.15 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        
+        
+        
+        
+        
+        <tr>
+            <td colspan="1" class="sno">24</td>
+            <td colspan="1" class="rno">R16</td>
+            <td colspan="2" class="route"><a style=color:white;  href="nroutebox/f16.php"><b>Neelangkarai</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route24')" 
+                   onmouseout="hideDetails('route24')">
+                    Timing
+                </a>
+                <div id="route24" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-16 : Neelangkarai</b></td></tr>
+                            <tr><td width="225" class="bpt">Prathana Theatre</td><td class="time">6.10 am</td></tr>
+                            <tr><td width="225" class="bpt">Vetuvankeni</td><td class="time">6.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Thiruvanmiyur RTO Office</td><td class="time">6.20 am</td></tr>
+                            <tr><td width="225" class="bpt">Adyar Depot</td><td class="time">6.29 am</td></tr>
+                            <tr><td width="225" class="bpt">Madyakailash</td><td class="time">6.35 am</td></tr>
+                            <tr><td width="225" class="bpt">Guindy</td><td class="time">6.42 am</td></tr>
+                            <tr><td width="225" class="bpt">Mugalivakkam</td><td class="time">6.55 am</td></tr>
+                            <tr><td width="225" class="bpt">Karayanchavadi</td><td class="time">7.10 am</td></tr>
+                            <tr><td width="225" class="bpt">Poonamallee Bus Stand</td><td class="time">7.15 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.10 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        <tr>
+            <td colspan="1" class="sno">25</td>
+            <td colspan="1" class="rno">R16A</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f16a.php"><b>Guindy</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white; href="javascript:void(0);" 
+                   onmouseover="showDetails('route25')" 
+                   onmouseout="hideDetails('route25')">
+                    Timing
+                </a>
+                <div id="route25" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-16A : Guindy</b></td></tr>
+                            <tr><td width="225" class="bpt">Butt Road</td><td class="time">6.45 am</td></tr>
+                            <tr><td width="225" class="bpt">Nandambakkam</td><td class="time">6.48 am</td></tr>
+                            <tr><td width="225" class="bpt">Ramapuram Signal</td><td class="time">6.52 am</td></tr>
+                            <tr><td width="225" class="bpt">DLF</td><td class="time">6.55 am</td></tr>
+                            <tr><td width="225" class="bpt">Mugalivakkam</td><td class="time">7.00 am</td></tr>
+                            <tr><td width="225" class="bpt">Saravana Store</td><td class="time">7.03 am</td></tr>
+                            <tr><td width="225" class="bpt">Poonamallee Depot</td><td class="time">7.25 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.45 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        <tr>
+            <td colspan="1" class="sno">26</td>
+            <td colspan="1" class="rno">R17</td>
+            <td colspan="2" class="route"><a style=color:white;  href="nroutebox/f17.php"><b>Valluvarkottam</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route26')" 
+                   onmouseout="hideDetails('route26')">
+                    Timing
+                </a>
+                <div id="route26" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-17 : Valluvarkottam</b></td></tr>
+                            <tr><td width="225" class="bpt">Valluvarkottam</td><td class="time">6.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Liberty</td><td class="time">6.20 am</td></tr>
+                            <tr><td width="225" class="bpt">Power House</td><td class="time">6.25 am</td></tr>
+                            <tr><td width="225" class="bpt">Lakshman Sruthi</td><td class="time">6.30 am</td></tr>
+                            <tr><td width="225" class="bpt">Thai Sathya</td><td class="time">6.35 am</td></tr>
+                            <tr><td width="225" class="bpt">Virugambakkam</td><td class="time">6.40 am</td></tr>
+                            <tr><td width="225" class="bpt">Alwar Thirunagar</td><td class="time">6.42 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.15 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        <tr>
+            <td colspan="1" class="sno">27</td>
+            <td colspan="1" class="rno">R17A</td>
+            <td colspan="2" class="route"><a style=color:white;  href="nroutebox/f17a.php"><b>Valasaravakkam</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white; href="javascript:void(0);" 
+                   onmouseover="showDetails('route27')" 
+                   onmouseout="hideDetails('route27')">
+                    Timing
+                </a>
+                <div id="route27" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-17A : Valasaravakkam</b></td></tr>
+                            <tr><td width="225" class="bpt">Valasaravakkam Shivan Koil</td><td class="time">6.45 am</td></tr>
+                            <tr><td width="225" class="bpt">Valasaravakkam</td><td class="time">6.50 am</td></tr>
+                            <tr><td width="225" class="bpt">Saravana Bhavan Hotel</td><td class="time">6.53 am</td></tr>
+                            <tr><td width="225" class="bpt">Lakshmi Nagar</td><td class="time">6.55 am</td></tr>
+                            <tr><td width="225" class="bpt">Porur Bridge</td><td class="time">7.00 am</td></tr>
+                            <tr><td width="225" class="bpt">Iyyappanthangal</td><td class="time">7.05 am</td></tr>
+                            <tr><td width="225" class="bpt">Kattupakkam</td><td class="time">7.10 am</td></tr>
+                            <tr><td width="225" class="bpt">Kumanachavadi</td><td class="time">7.15 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.45 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        
+        <tr>
+            <td colspan="1" class="sno">28</td>
+            <td colspan="1" class="rno">R18</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f18.php"><b>Pallikaranai</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white; href="javascript:void(0);" 
+                   onmouseover="showDetails('route28')" 
+                   onmouseout="hideDetails('route28')">
+                    Timing
+                </a>
+                <div id="route28" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-18 : Pallikaranai</b></td></tr>
+                            <tr><td width="225" class="bpt">Pallikaranai</td><td class="time">6.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Oil Mill</td><td class="time">6.16 am</td></tr>
+                            <tr><td width="225" class="bpt">Jeyachandran</td><td class="time">6.18 am</td></tr>
+                            <tr><td width="225" class="bpt">Medavakkam Nilgiris</td><td class="time">6.20 am</td></tr>
+                            <tr><td width="225" class="bpt">Medavakkam Koot Road</td><td class="time">6.21 am</td></tr>
+                            <tr><td width="225" class="bpt">Santhoshpuram</td><td class="time">6.25 am</td></tr>
+                            <tr><td width="225" class="bpt">Tambaram</td><td class="time">6.40 am</td></tr>
+                            <tr><td width="225" class="bpt">Lakshmi Nagar</td><td class="time">6.45 am</td></tr>
+                            <tr><td width="225" class="bpt">Mudichur</td><td class="time">6.50 am</td></tr>
+                            <tr><td width="225" class="bpt">Padmavathy Kalyana Mandapam</td><td class="time">6.52 am</td></tr>
+                            <tr><td width="225" class="bpt">Mathanapuram</td><td class="time">7.00 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.15 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        <tr>
+            <td colspan="1" class="sno">29</td>
+            <td colspan="1" class="rno">R18A</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f18a.php"><b>Sembakkam</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white; href="javascript:void(0);" 
+                   onmouseover="showDetails('route29')" 
+                   onmouseout="hideDetails('route29')">
+                    Timing
+                </a>
+                <div id="route29" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-18A : Sembakkam</b></td></tr>
+                            <tr><td width="225" class="bpt">Sembakkam</td><td class="time">6.25 am</td></tr>
+                            <tr><td width="225" class="bpt">Kamarajapuram</td><td class="time">6.30 am</td></tr>
+                            <tr><td width="225" class="bpt">Rajakilpakkam Signal</td><td class="time">6.32 am</td></tr>
+                            <tr><td width="225" class="bpt">Camp Road</td><td class="time">6.35 am</td></tr>
+                            <tr><td width="225" class="bpt">Tambaram Sanatorium</td><td class="time">6.50 am</td></tr>
+                            <tr><td width="225" class="bpt">Chrompet</td><td class="time">6.55 am</td></tr>
+                            <tr><td width="225" class="bpt">Thiruneermalai</td><td class="time">7.00 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.25 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        <tr>
+            <td colspan="1" class="sno">30</td>
+            <td colspan="1" class="rno">R19</td>
+            <td colspan="2" class="route"><a style=color:white;  href="nroutebox/f19.php"><b>Poombukar</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white; href="javascript:void(0);" 
+                   onmouseover="showDetails('route30')" 
+                   onmouseout="hideDetails('route30')">
+                    Timing
+                </a>
+                <div id="route30" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-19 : Poombukar</b></td></tr>
+                            <tr><td width="225" class="bpt">Poombukar</td><td class="time">6.10 am</td></tr>
+                            <tr><td width="225" class="bpt">Ganga Cinema</td><td class="time">6.25 am</td></tr>
+                            <tr><td width="225" class="bpt">Donbosco</td><td class="time">6.28 am</td></tr>
+                            <tr><td width="225" class="bpt">Poombukar</td><td class="time">6.30 am</td></tr>
+                            <tr><td width="225" class="bpt">Korattur Bus Stop</td><td class="time">6.55 am</td></tr>
+                            <tr><td width="225" class="bpt">Padi Britannia</td><td class="time">6.58 am</td></tr>
+                            <tr><td width="225" class="bpt">TVS Showroom</td><td class="time">7.10 am</td></tr>
+                            <tr><td width="225" class="bpt">Ambattur</td><td class="time">7.12 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.10 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        
+        <tr>
+            <td colspan="1" class="sno">31</td>
+            <td colspan="1" class="rno">R20</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f20.php"><b>Vepampattu</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route31')" 
+                   onmouseout="hideDetails('route31')">
+                    Timing
+                </a>
+                <div id="route31" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-20 : Vepampattu</b></td></tr>
+                            <tr><td width="225" class="bpt">Vepampattu Railway Station</td><td class="time">6.30 am</td></tr>
+                            <tr><td width="225" class="bpt">Madha Kovil</td><td class="time">6.32 am</td></tr>
+                            <tr><td width="225" class="bpt">Eswar Nagar</td><td class="time">6.33 am</td></tr>
+                            <tr><td width="225" class="bpt">Indian Bank Thiruvninravur</td><td class="time">6.35 am</td></tr>
+                            <tr><td width="225" class="bpt">Thiruninravur Railway Station</td><td class="time">6.36 am</td></tr>
+                            <tr><td width="225" class="bpt">Thiruninravur Bridge</td><td class="time">6.37 am</td></tr>
+                            <tr><td width="225" class="bpt">Jaya College</td><td class="time">6.39 am</td></tr>
+                            <tr><td width="225" class="bpt">Nemilicherri Road</td><td class="time">6.40 am</td></tr>
+                            <tr><td width="225" class="bpt">Pattabiram Gandhi Nagar</td><td class="time">6.41 am</td></tr>
+                            <tr><td width="225" class="bpt">Pattabiram Vasantha Mandapam</td><td class="time">6.42 am</td></tr>
+                            <tr><td width="225" class="bpt">Sekkadu Bus Stand</td><td class="time">6.45 am</td></tr>
+                            <tr><td width="225" class="bpt">Avadi Ponnu Store</td><td class="time">6.50 am</td></tr>
+                            <tr><td width="225" class="bpt">Avadi J.P.Garden</td><td class="time">6.52 am</td></tr>
+                            <tr><td width="225" class="bpt">Govarthanagiri Bus Stand</td><td class="time">6.55 am</td></tr>
+                            <tr><td width="225" class="bpt">Chennirkuppam</td><td class="time">7.05 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.30 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        
+        
+        <tr>
+            <td colspan="1" class="sno">32</td>
+            <td colspan="1" class="rno">R21</td>
+            <td colspan="2" class="route"><a style=color:white;  href="nroutebox/f21.php"><b>Ayyapakkam</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route32')" 
+                   onmouseout="hideDetails('route32')">
+                    Timing
+                </a>
+                <div id="route32" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-21 : Ayyapakkam</b></td></tr>
+                            <tr><td width="225" class="bpt">Ayapakkam Parking</td><td class="time">6.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Ayapakkam SBI ATM</td><td class="time">6.17 am</td></tr>
+                            <tr><td width="225" class="bpt">Ayapakkam Petrol Bunk</td><td class="time">6.20 am</td></tr>
+                            <tr><td width="225" class="bpt">ICF Church</td><td class="time">6.22 am</td></tr>
+                            <tr><td width="225" class="bpt">Canara Bank</td><td class="time">6.27 am</td></tr>
+                            <tr><td width="225" class="bpt">Singapore Shopping</td><td class="time">6.32 am</td></tr>
+                            <tr><td width="225" class="bpt">Senneerkuppam</td><td class="time">7.05 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.15 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        
+        <tr>
+            <td colspan="1" class="sno">33</td>
+            <td colspan="1" class="rno">R22</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f22.php"><b>Thiruthani</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route33')" 
+                   onmouseout="hideDetails('route33')">
+                    Timing
+                </a>
+                <div id="route33" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-22 : Thiruthani</b></td></tr>
+                            <tr><td width="225" class="bpt">Thiruthani Bypass</td><td class="time">5.55 am</td></tr>
+                            <tr><td width="225" class="bpt">Thiruvallur Bypass X Road</td><td class="time">6.00 am</td></tr>
+                            <tr><td width="225" class="bpt">Nagalamman Nagar</td><td class="time">6.08 am</td></tr>
+                            <tr><td width="225" class="bpt">Krishna Poly</td><td class="time">6.10 am</td></tr>
+                            <tr><td width="225" class="bpt">Jothi Nagar</td><td class="time">6.12 am</td></tr>
+                            <tr><td width="225" class="bpt">Indira Gandhi Nagar</td><td class="time">6.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Swalpetaih</td><td class="time">6.16 am</td></tr>
+                            <tr><td width="225" class="bpt">Government Hospital</td><td class="time">6.17 am</td></tr>
+                            <tr><td width="225" class="bpt">Old Bus Stand</td><td class="time">6.18 am</td></tr>
+                            <tr><td width="225" class="bpt">Railway Station</td><td class="time">6.20 am</td></tr>
+                            <tr><td width="225" class="bpt">New Bus Stand</td><td class="time">6.22 am</td></tr>
+                            <tr><td width="225" class="bpt">SR Gate</td><td class="time">6.28 am</td></tr>
+                            <tr><td width="225" class="bpt">Navy Gate</td><td class="time">6.30 am</td></tr>
+                            <tr><td width="225" class="bpt">Venkatesapuram</td><td class="time">6.31 am</td></tr>
+                            <tr><td width="225" class="bpt">Marimangalam</td><td class="time">6.55 am</td></tr>
+                            <tr><td width="225" class="bpt">Narasimapuram</td><td class="time">6.58 am</td></tr>
+                            <tr><td width="225" class="bpt">Perambakkam</td><td class="time">7.00 am</td></tr>
+                            <tr><td width="225" class="bpt">Koovam Bus Stop</td><td class="time">7.02 am</td></tr>
+                            <tr><td width="225" class="bpt">Valarpuram</td><td class="time">7.25 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">5.55 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        <tr>
+            <td colspan="1" class="sno">34</td>
+            <td colspan="1" class="rno">R23</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f23.php"><b>K4 Police Station</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route34')" 
+                   onmouseout="hideDetails('route34')">
+                    Timing
+                </a>
+                <div id="route34" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-23 : K4 Police Station</b></td></tr>
+                            <tr><td width="225" class="bpt">Nathamuni Theatre</td><td class="time">6.35 am</td></tr>
+                            <tr><td width="225" class="bpt">K4 Police Station</td><td class="time">6.40 am</td></tr>
+                            <tr><td width="225" class="bpt">Labour Officers Quarters</td><td class="time">6.42 am</td></tr>
+                            <tr><td width="225" class="bpt">Vijaya Maruthi (Nuts & Spices)</td><td class="time">6.44 am</td></tr>
+                            <tr><td width="225" class="bpt">Udayam Colony</td><td class="time">6.46 am</td></tr>
+                            <tr><td width="225" class="bpt">Kambar Colony</td><td class="time">6.48 am</td></tr>
+                            <tr><td width="225" class="bpt">Anna Nagar West Depot</td><td class="time">6.50 am</td></tr>
+                            <tr><td width="225" class="bpt">Thirumangalam Bridge</td><td class="time">6.52 am</td></tr>
+                            <tr><td width="225" class="bpt">Thirumangalam Waves</td><td class="time">6.56 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.35 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        <tr>
+            <td colspan="1" class="sno">35</td>
+            <td colspan="1" class="rno">R24</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f24.php"><b>Arcot</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route35')" 
+                   onmouseout="hideDetails('route35')">
+                    Timing
+                </a>
+                <div id="route35" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-24 : Arcot</b></td></tr>
+                            <tr><td width="225" class="bpt">Arcot Bus Stand</td><td class="time">5.25 am</td></tr>
+                            <tr><td width="225" class="bpt">Muthukadai</td><td class="time">5.30 am</td></tr>
+                            <tr><td width="225" class="bpt">VC Motor</td><td class="time">5.33 am</td></tr>
+                            <tr><td width="225" class="bpt">Walajapettai</td><td class="time">5.35 am</td></tr>
+                            <tr><td width="225" class="bpt">Arignar Anna Gov College</td><td class="time">5.37 am</td></tr>
+                            <tr><td width="225" class="bpt">Walajapettai Toll gate</td><td class="time">5.40 am</td></tr>
+                            <tr><td width="225" class="bpt">Kaveripakkam</td><td class="time">5.45 am</td></tr>
+                            <tr><td width="225" class="bpt">Perumpullipakkam</td><td class="time">6.00 am</td></tr>
+                            <tr><td width="225" class="bpt">Vinayagapuram (KPM)</td><td class="time">6.20 am</td></tr>
+                            <tr><td width="225" class="bpt">Olimugamathu Pettai (Gori)</td><td class="time">6.22 am</td></tr>
+                            <tr><td width="225" class="bpt">Egambaranathar Koil</td><td class="time">6.25 am</td></tr>
+                            <tr><td width="225" class="bpt">Kachapeswarar Koil</td><td class="time">6.28 am</td></tr>
+                            <tr><td width="225" class="bpt">Pookadai Chatram</td><td class="time">6.32 am</td></tr>
+                            <tr><td width="225" class="bpt">Kammal Street</td><td class="time">6.35 am</td></tr>
+                            <tr><td width="225" class="bpt">Indra Nagar (KPM Railwaygate)</td><td class="time">6.37 am</td></tr>
+                            <tr><td width="225" class="bpt">Ponnerikarai</td><td class="time">6.40 am</td></tr>
+                            <tr><td width="225" class="bpt">Santhavellore</td><td class="time">7.05 am</td></tr>
+                            <tr><td width="225" class="bpt">Sungawarchthram</td><td class="time">7.10 am</td></tr>
+                            <tr><td width="225" class="bpt">Vadamangalam</td><td class="time">7.20 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">5.40 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        
+        <tr>
+            <td colspan="1" class="sno">36</td>
+            <td colspan="1" class="rno">R25</td>
+            <td colspan="2" class="route"><a style=color:white;  href="nroutebox/f25.php"><b>Kallikuppam</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route36')" 
+                   onmouseout="hideDetails('route36')">
+                    Timing
+                </a>
+                <div id="route36" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-25 : Kallikuppam</b></td></tr>
+                            <tr><td width="225" class="bpt">Kallikuppam</td><td class="time">6.45 am</td></tr>
+                            <tr><td width="225" class="bpt">Stedford Hospital</td><td class="time">6.50 am</td></tr>
+                            <tr><td width="225" class="bpt">Saraswathy Nagar Indian oil petrol bunk</td><td class="time">6.54 am</td></tr>
+                            <tr><td width="225" class="bpt">Manigandapuram</td><td class="time">6.56 am</td></tr>
+                            <tr><td width="225" class="bpt">Thirumullaivoyal Junction</td><td class="time">6.58 am</td></tr>
+                            <tr><td width="225" class="bpt">Vaishnavi Nagar</td><td class="time">7.00 am</td></tr>
+                            <tr><td width="225" class="bpt">Murugappa Polytechnic</td><td class="time">7.02 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.45 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        <tr>
+            <td colspan="1" class="sno">37</td>
+            <td colspan="1" class="rno">R25A</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f25a.php"><b>Pudur</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white; href="javascript:void(0);" 
+                   onmouseover="showDetails('route37')" 
+                   onmouseout="hideDetails('route37')">
+                    Timing
+                </a>
+                <div id="route37" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-25A : Pudur</b></td></tr>
+                            <tr><td width="225" class="bpt">Pudur</td><td class="time">6.45 am</td></tr>
+                            <tr><td width="225" class="bpt">Oragadam HP Pump</td><td class="time">6.47 am</td></tr>
+                            <tr><td width="225" class="bpt">PTR Mahal</td><td class="time">6.50 am</td></tr>
+                            <tr><td width="225" class="bpt">Ponnu Supermarket</td><td class="time">6.53 am</td></tr>
+                            <tr><td width="225" class="bpt">Govardhanagari</td><td class="time">7.15 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.45 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        
+        <tr>
+            <td colspan="1" class="sno">38</td>
+            <td colspan="1" class="rno">R26</td>
+            <td colspan="2" class="route"><a style=color:white;  href="nroutebox/f26.php"><b>Andarkuppam</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white; href="javascript:void(0);" 
+                   onmouseover="showDetails('route38')" 
+                   onmouseout="hideDetails('route38')">
+                    Timing
+                </a>
+                <div id="route38" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-26 : Andarkuppam</b></td></tr>
+                            <tr><td width="225" class="bpt">Andarkuppam</td><td class="time">6.35 am</td></tr>
+                            <tr><td width="225" class="bpt">Kundrathur</td><td class="time">6.40 am</td></tr>
+                            <tr><td width="225" class="bpt">Kundrathur Thandalam</td><td class="time">6.43 am</td></tr>
+                            <tr><td width="225" class="bpt">Kovur</td><td class="time">6.45 am</td></tr>
+                            <tr><td width="225" class="bpt">Gerugambakkam</td><td class="time">6.50 am</td></tr>
+                            <tr><td width="225" class="bpt">Bai Kadai</td><td class="time">6.53 am</td></tr>
+                            <tr><td width="225" class="bpt">Mathanandapuram</td><td class="time">6.55 am</td></tr>
+                            <tr><td width="225" class="bpt">Venkateswara Nagar</td><td class="time">6.58 am</td></tr>
+                            <tr><td width="225" class="bpt">Porur</td><td class="time">7.05 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.35 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        
+        
+        <tr>
+            <td colspan="1" class="sno">39</td>
+            <td colspan="1" class="rno">R27</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f27.php"><b>Avadi</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white; href="javascript:void(0);" 
+                   onmouseover="showDetails('route39')" 
+                   onmouseout="hideDetails('route39')">
+                    Timing
+                </a>
+                <div id="route39" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-27 : Avadi</b></td></tr>
+                            <tr><td width="225" class="bpt">Ajeya Stadium</td><td class="time">6.25 am</td></tr>
+                            <tr><td width="225" class="bpt">HVF</td><td class="time">6.28 am</td></tr>
+                            <tr><td width="225" class="bpt">CRP</td><td class="time">6.32 am</td></tr>
+                            <tr><td width="225" class="bpt">Mitnamalli</td><td class="time">6.35 am</td></tr>
+                            <tr><td width="225" class="bpt">Muthapudupet</td><td class="time">6.40 am</td></tr>
+                            <tr><td width="225" class="bpt">Sasthri Nagar</td><td class="time">6.45 am</td></tr>
+                            <tr><td width="225" class="bpt">Avadi Checkpost</td><td class="time">6.55 am</td></tr>
+                            <tr><td width="225" class="bpt">Rama Rathna Theatre</td><td class="time">7.06 am</td></tr>
+                            <tr><td width="225" class="bpt">Avadi mankoil</td><td class="time">7.10 am</td></tr>
+                            <tr><td width="225" class="bpt">Vasantham Nagar</td><td class="time">7.12 am</td></tr>
+                            <tr><td width="225" class="bpt">Kovarthanagiri</td><td class="time">7.14 am</td></tr>
+                            <tr><td width="225" class="bpt">Kendra vihar</td><td class="time">7.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Kaduveti</td><td class="time">7.17 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.25 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        <tr>
+            <td colspan="1" class="sno">40</td>
+            <td colspan="1" class="rno">R27A</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f27a.php"><b>Kollumedu</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white; href="javascript:void(0);" 
+                   onmouseover="showDetails('route40')" 
+                   onmouseout="hideDetails('route40')">
+                    Timing
+                </a>
+                <div id="route40" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-27A : Kollumedu</b></td></tr>
+                            <tr><td width="225" class="bpt">Kollumedu</td><td class="time">6.30 am</td></tr>
+                            <tr><td width="225" class="bpt">Vel Tech College</td><td class="time">6.40 am</td></tr>
+                            <tr><td width="225" class="bpt">Kovilpathagai</td><td class="time">6.45 am</td></tr>
+                            <tr><td width="225" class="bpt">Ajeya Stadium</td><td class="time">6.50 am</td></tr>
+                            <tr><td width="225" class="bpt">CRPF</td><td class="time">6.55 am</td></tr>
+                            <tr><td width="225" class="bpt">Mittanemili</td><td class="time">7.00 am</td></tr>
+                            <tr><td width="225" class="bpt">Palavedu Service Road</td><td class="time">7.10 am</td></tr>
+                            <tr><td width="225" class="bpt">Nemilichery Tollgate</td><td class="time">7.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Chithukadu Blue</td><td class="time">7.25 am</td></tr>
+                            <tr><td width="225" class="bpt">Panimalar Tollgate</td><td class="time">7.30 am</td></tr>
+                            <tr><td width="225" class="bpt">Chembarambakkam</td><td class="time">7.37 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.30 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        <tr>
+            <td colspan="1" class="sno">41</td>
+            <td colspan="1" class="rno">R28</td>
+            <td colspan="2" class="route"><a style=color:white;  href="nroutebox/f28.php"><b>Agaram</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route41')" 
+                   onmouseout="hideDetails('route41')">
+                    Timing
+                </a>
+                <div id="route41" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-28 : Agaram</b></td></tr>
+                            <tr><td width="225" class="bpt">Agaram</td><td class="time">6.20 am</td></tr>
+                            <tr><td width="225" class="bpt">Periyar Nagar</td><td class="time">6.22 am</td></tr>
+                            <tr><td width="225" class="bpt">Thiruvalluvar Thirumanamandapam</td><td class="time">6.24 am</td></tr>
+                            <tr><td width="225" class="bpt">Permal Koil</td><td class="time">6.26 am</td></tr>
+                            <tr><td width="225" class="bpt">Kamban Nagar</td><td class="time">6.28 am</td></tr>
+                            <tr><td width="225" class="bpt">E.B</td><td class="time">6.30 am</td></tr>
+                            <tr><td width="225" class="bpt">Shanmugam Mahal</td><td class="time">6.32 am</td></tr>
+                            <tr><td width="225" class="bpt">Senthil Nagar</td><td class="time">6.35 am</td></tr>
+                            <tr><td width="225" class="bpt">Thathankuppam</td><td class="time">6.38 am</td></tr>
+                            <tr><td width="225" class="bpt">Kalyan Jewalrs</td><td class="time">6.45 am</td></tr>
+                            <tr><td width="225" class="bpt">Collector Nagar</td><td class="time">6.47 am</td></tr>
+                            <tr><td width="225" class="bpt">Cheriyan Hospital</td><td class="time">6.48 am</td></tr>
+                            <tr><td width="225" class="bpt">Golden Flats</td><td class="time">6.50 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.20 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        <tr>
+            <td colspan="1" class="sno">42</td>
+            <td colspan="1" class="rno">R29</td>
+            <td colspan="2" class="route"><a style=color:white; href="nroutebox/f29.php"><b>Velachery</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white; href="javascript:void(0);" 
+                   onmouseover="showDetails('route42')" 
+                   onmouseout="hideDetails('route42')">
+                    Timing
+                </a>
+                <div id="route42" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-29 : Velachery</b></td></tr>
+                            <tr><td width="225" class="bpt">Vijayanagar Bus Stand</td><td class="time">6.10 am</td></tr>
+                            <tr><td width="225" class="bpt">Kaiveli</td><td class="time">6.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Kamachi Hospital</td><td class="time">6.17 am</td></tr>
+                            <tr><td width="225" class="bpt">Pallavaram Singapore Shopping</td><td class="time">6.30 am</td></tr>
+                            <tr><td width="225" class="bpt">Krishna Nagar</td><td class="time">6.33 am</td></tr>
+                            <tr><td width="225" class="bpt"><font color="#ff0000">via - Non Stop Kundrathur outer ring road</font></td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.10 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        <tr>
+            <td colspan="1" class="sno">43</td>
+            <td colspan="1" class="rno">R29A</td>
+            <td colspan="2" class="route"><a style=color:white;  href="nroutebox/f29a.php"><b>Pammal</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white;  href="javascript:void(0);" 
+                   onmouseover="showDetails('route43')" 
+                   onmouseout="hideDetails('route43')">
+                    Timing
+                </a>
+                <div id="route43" style="display: none; position: absolute; background: rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-29A : Pammal</b></td></tr>
+                            <tr><td width="225" class="bpt">Pammal</td><td class="time">6.35 am</td></tr>
+                            <tr><td width="225" class="bpt">Arunmathi Theatre</td><td class="time">6.37 am</td></tr>
+                            <tr><td width="225" class="bpt">Anagaputhur</td><td class="time">6.39 am</td></tr>
+                            <tr><td width="225" class="bpt">Manikandan Nagar</td><td class="time">6.41 am</td></tr>
+                            <tr><td width="225" class="bpt">Karima Nagar</td><td class="time">6.45 am</td></tr>
+                            <tr><td width="225" class="bpt">Kundrathur (Theradi)</td><td class="time">6.48 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">6.35 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        <tr>
+            <td colspan="1" class="sno">44</td>
+            <td colspan="1" class="rno">R29B</td>
+            <td colspan="2" class="route"><a style=color:white;  href="nroutebox/f29b.php"><b>Sivanthangal</b></a></td>
+            <td colspan="1">
+                <a class="info" style=color:white; href="javascript:void(0);" 
+                   onmouseover="showDetails('route44')" 
+                   onmouseout="hideDetails('route44')">
+                    Timing
+                </a>
+                <div id="route44" style="display: none; position: absolute; background:rgb(22, 0, 72); border: 1px solid #ccc; padding: 10px;">
+                    <table width="325">
+                        <tbody>
+                            <tr><td width="225" class="bptb" colspan="2"><b>R-29B : Sivanthangal</b></td></tr>
+                            <tr><td width="225" class="bpt">Sivanthangal</td><td class="time">7.05 am</td></tr>
+                            <tr><td width="225" class="bpt">Muthukumaran College</td><td class="time">7.10 am</td></tr>
+                            <tr><td width="225" class="bpt">Pattu Koot Road</td><td class="time">7.13 am</td></tr>
+                            <tr><td width="225" class="bpt">Mangadu</td><td class="time">7.15 am</td></tr>
+                            <tr><td width="225" class="bpt">Kankaiyamman Kovil</td><td class="time">7.20 am</td></tr>
+                            <tr><td width="225" class="bpt">MGR Nagar</td><td class="time">7.23 am</td></tr>
+                            <tr><td width="225" class="bpt">Kumananchavadi</td><td class="time">7.25 am</td></tr>
+                            <tr><td width="225" class="bpt">Aravind Hospital</td><td class="time">7.30 am</td></tr>
+                            <tr><td width="225" class="bpt">RIT Campus</td><td class="time">7.40 am</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td class="start" align="center">7.05 am</td>
+            <td colspan="1" class="prio1">√</td>
+            <td colspan="1" class="prio1">√</td>
+        </tr>
+        
+        <!--
+        <tr>
+            <td colspan=1  class=sno>28</td>
+            <td colspan=1  class=rnor>RSB</td>
+            <td colspan=2 class=route><b>Miot Hospital</b> </font></td>
+            <td colspan=1 ><span ><a class=info href="nroutebox/rsb01.php">Timing<span>
+            <table width=325>
+        <tr><td width=225 colspan=2 class=bptb><b>RSB: Miot Hospital</b> </td></tr>
+        <tr><td width=225  class=bpt>Miot Hospital</td><td class=time>7.30 am</td></tr>
+        <tr><td width=225  class=bpt>Toyota Show room</td><td class=time>7.55</td></tr>
+        <tr><td width=225  class=bpt>Nerkundram</td><td class=time>7.58</td></tr>
+        <tr><td width=225  class=bpt>Madhuravoil market</td><td class=time>8.03</td></tr>
+        <tr><td width=225  class=bpt>Roma Hostel</td><td class=time>8.55</td></tr>
+        <tr><td width=225  class=bpt>RSB campus</td><td class=time>9.05 am</td></tr>
+        
+        </table>	</span></a></td>
+            <td class=start align=center>7.30 am</td>
+            <td colspan=1 class=prio1>&radic;</td>
+            <td colspan=1 class=prio1>&radic;</td>
+        </tr>
+        -->
+        <tr><td colspan="8"><center><span style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: goldenrod;">RIT students can use the following bus facilities from REC</span></center></td></tr>
+        
+        
+        
+        
+        
+        
+        
+            
